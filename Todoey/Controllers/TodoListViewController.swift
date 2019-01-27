@@ -20,16 +20,17 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //declare three Item objects
-        
         loadItems()
     }
     
     //MARK - Tableview Datasource Methods
+
+    //NUMBER OF ROWS IN SECTION
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
     }
-    
+
+    //CELL FOR ROW AT INDEX
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         let item = itemArray[indexPath.row]
@@ -40,13 +41,16 @@ class TodoListViewController: UITableViewController {
         
         return cell
     }
+    
     //MARK -Tableview Delegate Methods
+    
+    //DID SELECT A ROW
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //toggles checkmark status on and off.
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        //update our files
+        //update our files to show the new checkmark status
         saveItems()
         
         //make the row color fade after selection
@@ -55,6 +59,7 @@ class TodoListViewController: UITableViewController {
     
     //MARK - Add New Items
     
+    //ADD BUTTON PRESSED
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         //create an alert controller
         let alert = UIAlertController(title: "Add New Todoey Item", message: " ", preferredStyle: .alert)
@@ -70,19 +75,21 @@ class TodoListViewController: UITableViewController {
             textField=alertTextField
         }
         
-        //make the add item button to add the item to the listArray
+        //make the add item button in the alert winddow to add the item to the listArray
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            
             //instanciate an object
             let newItem = Item()
             
             //set the title property of the object
-            newItem.title = textField.text!
+            newItem.title = "\(self.itemArray.count+1). " + textField.text!
             
             //add the object to the array of objects.. (list)
             self.itemArray.append(newItem)
             
-            //update our property list
+            //update our property list in our plist file
             self.saveItems()
+            self.scrollToBottom()
         }
         alert.addAction(action)
         present(alert, animated: true ,completion: nil)
@@ -90,7 +97,7 @@ class TodoListViewController: UITableViewController {
     
     
     //MARK - Model Manipulation Methods
-    
+    //ENCODE our list for the plist and send them.
     func saveItems() {
         let encoder = PropertyListEncoder()
         do {
@@ -102,6 +109,7 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
+    //get items from the plist and DECODE them
     func loadItems() {
         if let data = try? Data(contentsOf: dataFilePath!) {
             let decoder = PropertyListDecoder()
@@ -112,4 +120,12 @@ class TodoListViewController: UITableViewController {
             }
         }
     }
+    
+    //scrolls to last item in list
+    func scrollToBottom () {
+        if itemArray.count - 1 > 0 {
+            tableView.scrollToRow(at: IndexPath(row: itemArray.count - 1, section: 0), at: .bottom, animated: false)
+        }
+    }
+
 }
