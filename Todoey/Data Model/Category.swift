@@ -12,8 +12,6 @@ import RealmSwift
 class Category: Object {
     @objc dynamic var name: String =  ""
 
-    //This is the forware relationship from category to items
-    //ITEMS IS LIKE AN ARRAY
-    
+    //This is the forward relationship from category to items    
     let items = List<Item>()
 }
