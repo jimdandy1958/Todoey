@@ -88,10 +88,9 @@ class TodoListViewController: UITableViewController {
             self.tableView.reloadData()
             self.scrollToBottom()
         }
-
             alert.addTextField { (alertTextField) in
-                alertTextField.placeholder = "create new item"
-                textField=alertTextField
+            alertTextField.placeholder = "create new item"
+            textField=alertTextField
             }
         
         alert.addAction(action)
@@ -108,6 +107,25 @@ class TodoListViewController: UITableViewController {
         let itemcount = todoItems?.count ?? 1
         if itemcount - 1 > 0 {
             tableView.scrollToRow(at: IndexPath(row: itemcount - 1, section: 0), at: .bottom, animated: false)
+        }
+    }
+
+}
+
+extension TodoListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title",ascending: true)
+        tableView.reloadData()
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            tableView.reloadData()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
 

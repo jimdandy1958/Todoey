@@ -38,16 +38,11 @@ class CategoryViewController: UITableViewController {
     
     //MARK: - Tableview Delegate Methods
 
-    //DID SELECT A ROW happens when you click on a row.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //PERFORM SEGUE
         performSegue(withIdentifier: "goToItems", sender: self)
-        print("performing segue")
-    }
-    
-    //PREPARE FOR SEGUE
+        }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("preparing for segue")
         let destinationVC = segue.destination as! TodoListViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -73,6 +68,20 @@ class CategoryViewController: UITableViewController {
         tableView.reloadData()
     }
 
+//this is a function i made to delete a category
+    func deleteCategory(indexPath: Int)  {
+        
+        if let category = categories?[indexPath] {
+            do{
+                try realm.write{
+                    realm.delete(category)
+                }
+            }catch{
+                print("Error deleting category, \(error)")
+            }
+        }
+        tableView.reloadData()
+    }
 //
     //MARK: - Add New Categories
     
