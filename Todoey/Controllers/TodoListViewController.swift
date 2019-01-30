@@ -51,6 +51,7 @@ class TodoListViewController: UITableViewController {
         if let item = todoItems?[indexPath.row] {
             do{
                 try realm.write{
+                    //realm.delete(item)
                     item.done = !item.done
                 }
             }catch{
@@ -63,8 +64,7 @@ class TodoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
-    
-    
+        
     //ADD BUTTON PRESSED
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
 
