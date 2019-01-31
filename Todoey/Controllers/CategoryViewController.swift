@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-
+import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -19,6 +19,7 @@ class CategoryViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
+       
        
     }
     
@@ -31,8 +32,10 @@ class CategoryViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         //addition code not in the super class
+ 
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
-        
+ 
+        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].colour ?? "30A2FB")
         return cell
     }
     
@@ -63,10 +66,14 @@ class CategoryViewController: SwipeTableViewController {
             self.tableView.reloadData()
         }
     
+    
+    //MARK: - LOAD CATEGORIES
     func loadCategories() {
         categories = realm.objects(Category.self)
         tableView.reloadData()
     }
+    
+    
     //MARK: = DELETE DATA FROM SWIPE
     override func updateModel(at indexPath: IndexPath) {
         if let categoryForDeletion = self.categories?[indexPath.row] {
@@ -100,11 +107,10 @@ class CategoryViewController: SwipeTableViewController {
         //make the add item button in the alert winddow to add the item to the categoryArray
         let action = UIAlertAction(title: "Add Category", style: .default) { (action) in
             
-            //RealmSwift way
             let newCategory = Category()
             newCategory.name = textField.text!
+            newCategory.colour = UIColor.randomFlat.hexValue()
             
-            //RealmSwift function call where we pass the category.
             self.save(category: newCategory)
             
             self.scrollToBottom()
