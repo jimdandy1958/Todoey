@@ -10,7 +10,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: SwipeTableViewController {
     
     //make an array of objects
     var todoItems: Results<Item>?
@@ -34,11 +34,11 @@ class TodoListViewController: UITableViewController {
 
     //CELL FOR ROW AT INDEX fills in the text of the cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        
-        if let item = todoItems?[indexPath.row] {
 
-            cell.textLabel?.text = "\(indexPath.row+1). " + item.title
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+        if let item = todoItems?[indexPath.row] {
+            cell.textLabel!.text = "\(indexPath.row+1). " + item.title
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
             cell.textLabel?.text = "No Items Added"
@@ -58,16 +58,13 @@ class TodoListViewController: UITableViewController {
                 print("Error saving done status, \(error)")
             }
         }
-        
         tableView.reloadData()
-        
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
         
     //ADD BUTTON PRESSED
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-
+        
         var textField = UITextField()
         
         let alert = UIAlertController(title: "Add New Todoey Item", message: " ", preferredStyle: .alert)
@@ -89,17 +86,32 @@ class TodoListViewController: UITableViewController {
             self.tableView.reloadData()
             self.scrollToBottom()
         }
-            alert.addTextField { (alertTextField) in
+        
+        alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "create new item"
             textField=alertTextField
-            }
+        }
         
         alert.addAction(action)
         present(alert, animated: true ,completion: nil)
+        tableView.reloadData()
     }
     
     func loadItems() {
         todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        tableView.reloadData()
+    }
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let item = todoItems?[indexPath.row] {
+            do  {
+                try realm.write{
+                    realm.delete(item)
+                }
+            } catch {
+                print("Error deleting item, \(error))")
+            }
+        }
     }
     
     //SROLL TO THE BOTTOM

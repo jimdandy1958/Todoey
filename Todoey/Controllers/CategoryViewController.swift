@@ -19,7 +19,7 @@ class CategoryViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
-        tableView.rowHeight = 80
+       
     }
     
     //MARK: - TableView Datasource Methods
@@ -29,8 +29,6 @@ class CategoryViewController: SwipeTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        //bring in the super.tableview from the swipetableviewcontroller
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         //addition code not in the super class
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
