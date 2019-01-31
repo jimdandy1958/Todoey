@@ -17,14 +17,56 @@ class TodoListViewController: SwipeTableViewController {
     var todoItems: Results<Item>?
     let realm = try! Realm()
     
+    //MADE A LINK SO THAT WE CAN CHANGE SEARCH BAR BACKGROUND COLOR
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     var selectedCategory : Category? {
-        didSet{
-            loadItems()
-        }
+        didSet{loadItems()}
     }
-    ////////VIEW DID LOAD///////
+    
+    //     VIEW DID LOAD      //
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    //   VIEW WILL APPEAR     //
+    override func viewWillAppear(_ animated: Bool) {
+        //MAKE THE TITLE OF THE TODO LIST THE SAME AS THE CATEGORY NAME
+        title = selectedCategory?.name
+        
+        //MAKE SURE A CATEGORY IS SELECTED OR CRASH
+        guard let colourHex = selectedCategory?.colour else {fatalError()}
+    
+        updateNavBar(withHexCode: colourHex)
+    }
+    
+    //CHANGE THE NAVBAR OF THE CATEGORY BACK TO IT'S ORIGINAL WHEN MAKING TODO LIST DISAPPEAR
+    override func viewWillDisappear(_ animated: Bool) {
+        updateNavBar(withHexCode: "30A2FB")
+    }
+    
+    //MARK: - Nav Bar Setup Methods
+    
+    func updateNavBar(withHexCode colourHexCode: String)   {
+    
+    //MAKE SURE A NAV BAR EXISTS.. IF NOT CRASH IT TO LET YOU KNOW YOU HAVE A PROBLEM
+    guard let navBar = navigationController?.navigationBar else {fatalError("Navigation Controller does not exist.")}
+    
+        //USE GAURD TO SEt THE COLOUR OF NAV BAR IF IT EXISTS.  ELSE... CRASH
+        guard let navBarColour = UIColor(hexString: colourHexCode) else { fatalError()}
+        
+        //MAKE NAVBAR OF TODO LIST SAME COLOUR AS CATEGORY USING THE DATABASE VALUE OF COLOUR
+        navBar.barTintColor = navBarColour
+        
+        //SET COLOR OF NAVBAR BUTTONS <- & + TO CONTRAST NAVBAR BACKGROUND
+        navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
+        
+        //SET THE TITLE FONT COLOR TO CONTRAST THE BACKGROUND
+        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+        
+        //SET THE BACKGROUND OF THE SEARCH BAR TO THE SAME COLOR
+        searchBar.barTintColor = navBarColour
     }
     
     //MARK - Tableview Datasource Methods
@@ -78,23 +120,23 @@ class TodoListViewController: SwipeTableViewController {
         let alert = UIAlertController(title: "Add New Todoey Item", message: " ", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            
-            if let currentCategory = self .selectedCategory {
-                do{
-                    try self.realm.write {
-                        let newItem = Item()
-                        newItem.title = textField.text!
-                        newItem.dateCreated = Date()
-                        currentCategory.items.append(newItem)
+            if textField.text != ""{
+                if let currentCategory = self.selectedCategory {
+                    do{
+                        try self.realm.write {
+                            let newItem = Item()
+                            newItem.title = textField.text!
+                            newItem.dateCreated = Date()
+                            currentCategory.items.append(newItem)
+                        }
+                    } catch {
+                        print("Error saving new item, \(error)")
                     }
-                } catch {
-                    print("Error saving new item, \(error)")
                 }
+                self.tableView.reloadData()
+                self.scrollToBottom()
             }
-            self.tableView.reloadData()
-            self.scrollToBottom()
         }
-        
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "create new item"
             textField=alertTextField

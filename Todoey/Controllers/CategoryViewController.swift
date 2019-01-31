@@ -32,10 +32,16 @@ class CategoryViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         //addition code not in the super class
- 
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
- 
-        cell.backgroundColor = UIColor(hexString: categories?[indexPath.row].colour ?? "30A2FB")
+        if let category = categories?[indexPath.row]{
+            
+            cell.textLabel?.text = category.name
+            
+            guard let categoryColour = UIColor(hexString: category.colour )else {fatalError()}
+            
+            cell.backgroundColor = categoryColour
+            
+            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+        }
         return cell
     }
     
@@ -92,27 +98,23 @@ class CategoryViewController: SwipeTableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         //create an alert controller
         let alert = UIAlertController(title: "Add New Category", message: " ", preferredStyle: .alert)
-        //create an action within the alert box. the Add item button
-        
-        //make a textfield() method variable to pass the text out of the addTextField function
+
         var textField = UITextField()
         
-        //put a text field in the alert for the user to type in their addition to the list.
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Add a new category"
             //set up the global variable to copy what is going to be typed later.
             textField=alertTextField
         }
         
-        //make the add item button in the alert winddow to add the item to the categoryArray
         let action = UIAlertAction(title: "Add Category", style: .default) { (action) in
             
             let newCategory = Category()
             newCategory.name = textField.text!
             newCategory.colour = UIColor.randomFlat.hexValue()
-            
+            if newCategory.name != ""{
             self.save(category: newCategory)
-            
+            }
             self.scrollToBottom()
         }
         alert.addAction(action)

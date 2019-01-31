@@ -8,7 +8,7 @@
 
 import UIKit
 import SwipeCellKit
-
+//                             SWIPE TABLE VIEW CONTROLLER CLASS BEGINNING
 class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegate {
     
     override func viewDidLoad() {
@@ -17,9 +17,9 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         tableView.separatorStyle = .none
     }
     
-    //TableView Datasource Methods
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+/////////////////////////////////////////////////////////////////////////////
+       //                TableView Datasource Methods
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
         
         cell.delegate = self
@@ -28,42 +28,36 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
 
     }
     
-    ///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
+    //                             SWIPING DELETING
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-            guard orientation == .right else { return nil }
-            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+
+        guard orientation == .right else { return nil}
+    
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") {
+            action, indexPath in
                 self.updateModel(at: indexPath)
-            }
+        }
             // customize the action appearance
             deleteAction.image = UIImage(named: "delete-icon")
             return [deleteAction]
         }
-        ////////////////////////////////////////////////////////////////////////
     
-        func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
-            var options = SwipeOptions()
-            options.expansionStyle = .destructive
-            //   options.transitionStyle = .border
-            return options
-        }
-        
+    //                      TABLEVIEW EDIT ACTIONS OPTIONS FOR ROW AT
+    //////////////////////////////////////////////////////////////////////
+    //               SWIPE ACTION OPTION: DESTRUCTIVE
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        //   options.transitionStyle = .border
+        return options
+    }
+    
+    //          UPDATE MODEL
+    //////////////////////////////////////////////////////////////////////
+    //  CALLED FROM SUB CLASSES TO GET THE INDEX PATH FROM THE SUPER CLASS
     func updateModel(at indexPath: IndexPath) {
         //Update our data model.
     }
-        
-        //
-        //    //this is a function i made to delete a category
-//        func deleteCategory(indexPath: Int)  {
-//
-//            if let category = categories?[indexPath] {
-//                do{
-//                    try realm.write{
-//                        realm.delete(category)
-//                    }
-//                }catch{
-//                    print("Error deleting category, \(error)")
-//                }
-//            }
-//            // tableView.reloadData()
-//        }
 }
+//                SWIPE TABLE VIEW CONTROLLER CLASS ENDING
