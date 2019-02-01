@@ -16,11 +16,12 @@
 		04E8FF0A2200DF7D00EFE099 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF092200DF7D00EFE099 /* Item.swift */; };
 		04E8FF0C2200DF8700EFE099 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0B2200DF8700EFE099 /* Category.swift */; };
 		04E8FF0E220222E600EFE099 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0D220222E600EFE099 /* SwipeTableViewController.swift */; };
+		04FD24BC2204169A00225505 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FD24BB2204169A00225505 /* Default-568h@2x.png */; };
 		C697785C29EB0A9D9452FEC4 /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C52E9D6D1BDB4AF4A7CC008 /* Pods_Todoey.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04BF6A5621FCCCB200485A3B /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04BF6A5621FCCCB200485A3B /* JWMinistry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JWMinistry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BF6A5921FCCCB200485A3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04BF6A5B21FCCCB200485A3B /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
 		04BF6A5E21FCCCB200485A3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -31,6 +32,7 @@
 		04E8FF092200DF7D00EFE099 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		04E8FF0B2200DF8700EFE099 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		04E8FF0D220222E600EFE099 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
+		04FD24BB2204169A00225505 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		41CCA15094F2D4367003C1C0 /* Pods-Todoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.release.xcconfig"; sourceTree = "<group>"; };
 		5C52E9D6D1BDB4AF4A7CC008 /* Pods_Todoey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3CD4D8B78C5FCDF9592EFA /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 		04BF6A4D21FCCCB200485A3B = {
 			isa = PBXGroup;
 			children = (
+				04FD24BB2204169A00225505 /* Default-568h@2x.png */,
 				04BF6A5821FCCCB200485A3B /* Todoey */,
 				04BF6A5721FCCCB200485A3B /* Products */,
 				BA117CF3BCB213680B8EC60E /* Pods */,
@@ -61,7 +64,7 @@
 		04BF6A5721FCCCB200485A3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04BF6A5621FCCCB200485A3B /* Todoey.app */,
+				04BF6A5621FCCCB200485A3B /* JWMinistry.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,9 +138,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		04BF6A5521FCCCB200485A3B /* Todoey */ = {
+		04BF6A5521FCCCB200485A3B /* JWMinistry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04BF6A6821FCCCB300485A3B /* Build configuration list for PBXNativeTarget "Todoey" */;
+			buildConfigurationList = 04BF6A6821FCCCB300485A3B /* Build configuration list for PBXNativeTarget "JWMinistry" */;
 			buildPhases = (
 				F0790E6BECF820CDD049E54D /* [CP] Check Pods Manifest.lock */,
 				04BF6A5221FCCCB200485A3B /* Sources */,
@@ -149,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = Todoey;
+			name = JWMinistry;
 			productName = Todoey;
-			productReference = 04BF6A5621FCCCB200485A3B /* Todoey.app */;
+			productReference = 04BF6A5621FCCCB200485A3B /* JWMinistry.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -169,7 +172,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 04BF6A5121FCCCB200485A3B /* Build configuration list for PBXProject "Todoey" */;
+			buildConfigurationList = 04BF6A5121FCCCB200485A3B /* Build configuration list for PBXProject "JWMinistry" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -182,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04BF6A5521FCCCB200485A3B /* Todoey */,
+				04BF6A5521FCCCB200485A3B /* JWMinistry */,
 			);
 		};
 /* End PBXProject section */
@@ -193,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04BF6A6421FCCCB300485A3B /* LaunchScreen.storyboard in Resources */,
+				04FD24BC2204169A00225505 /* Default-568h@2x.png in Resources */,
 				04BF6A6121FCCCB300485A3B /* Assets.xcassets in Resources */,
 				04BF6A5F21FCCCB200485A3B /* Main.storyboard in Resources */,
 			);
@@ -448,7 +452,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		04BF6A5121FCCCB200485A3B /* Build configuration list for PBXProject "Todoey" */ = {
+		04BF6A5121FCCCB200485A3B /* Build configuration list for PBXProject "JWMinistry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04BF6A6621FCCCB300485A3B /* Debug */,
@@ -457,7 +461,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04BF6A6821FCCCB300485A3B /* Build configuration list for PBXNativeTarget "Todoey" */ = {
+		04BF6A6821FCCCB300485A3B /* Build configuration list for PBXNativeTarget "JWMinistry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04BF6A6921FCCCB300485A3B /* Debug */,
