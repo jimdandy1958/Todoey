@@ -16,10 +16,6 @@ class HourTableViewController: SwipeTableViewController {
     var hourlist: Results<Hour>?
     let realm = try! Realm()
     
-    //MADE A LINK SO THAT WE CAN CHANGE SEARCH BAR BACKGROUND COLOR
-    @IBOutlet weak var searchBar: UISearchBar!
-    
-    
     var selectedMonth : Month? {
         didSet{
             loadItems()
@@ -45,7 +41,7 @@ class HourTableViewController: SwipeTableViewController {
     
     //CHANGE THE NAVBAR OF THE MONTH BACK TO IT'S ORIGINAL WHEN MAKING TODO LIST DISAPPEAR
     override func viewWillDisappear(_ animated: Bool) {
-        updateNavBar(withHexCode: "30A2FB")
+        updateNavBar(withHexCode: "942192")
     }
     
     //MARK: - Nav Bar Setup Methods
@@ -66,10 +62,7 @@ class HourTableViewController: SwipeTableViewController {
         
         //SET THE TITLE FONT COLOR TO CONTRAST THE BACKGROUND
         navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
-        
-        //SET THE BACKGROUND OF THE SEARCH BAR TO THE SAME COLOR
-        searchBar.barTintColor = navBarColour
-    }
+        }
     
     //MARK - Tableview Datasource Methods
     
@@ -84,7 +77,7 @@ class HourTableViewController: SwipeTableViewController {
         
         if let item = hourlist?[indexPath.row] {
             
-            cell.textLabel!.text = "\(indexPath.row+1). " + "\(item.hourValue)"
+            cell.textLabel!.text = "\(item.hourValue)"
             
             cell.accessoryType = item.done ? .checkmark : .none
             
@@ -172,25 +165,6 @@ class HourTableViewController: SwipeTableViewController {
         let itemcount = hourlist?.count ?? 1
         if itemcount - 1 > 0 {
             tableView.scrollToRow(at: IndexPath(row: itemcount - 1, section: 0), at: .bottom, animated: false)
-        }
-    }
-    
-}
-
-extension HourTableViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        hourlist = hourlist?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "hourValue",ascending: true)
-        tableView.reloadData()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            loadItems()
-            tableView.reloadData()
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
         }
     }
     

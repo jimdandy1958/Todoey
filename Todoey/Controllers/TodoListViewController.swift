@@ -43,7 +43,7 @@ class TodoListViewController: SwipeTableViewController {
     
     //CHANGE THE NAVBAR OF THE CATEGORY BACK TO IT'S ORIGINAL WHEN MAKING TODO LIST DISAPPEAR
     override func viewWillDisappear(_ animated: Bool) {
-        updateNavBar(withHexCode: "30A2FB")
+        updateNavBar(withHexCode: "942192")
     }
     
     //MARK: - Nav Bar Setup Methods
