@@ -22,25 +22,44 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     
     
+    
     @IBAction func updateDateLabel(_ sender: Any) {
-        let hours = "\(round(computeElapsedTime()/3600)) hours."
-        let minutes = "\(round(computeElapsedTime()/60).remainder(dividingBy: 60)) minutes."
-        elapsedTimeLabel.text = hours+" and "+minutes
+        //get the hours
+        let hours = floor(computeElapsedTime()/3600)
+        //get the total minutes
+        let totalminutes = floor(computeElapsedTime()/60)
+        //make an hour string
+        let hourString = "\(hours) hours."
+        //get minutes in our hours counted
+        let hourMinutes = hours*60
+        // get the differnce between all the minutes and the ones in the hours
+        let excessMinutes = totalminutes - hourMinutes
+        //make a minutes string of the excess minutes
+        let minuteString = "\(excessMinutes) minutes."
+        elapsedTimeLabel.text = hourString+" and "+minuteString
+    
+    
     }
     
     @IBAction func updateEndTimeLabel(_ sender: Any) {
-        let hours = "\(round(computeElapsedTime()/3600)) hours."
-        let minutes = "\(round(computeElapsedTime()/60).remainder(dividingBy: 60)) minutes."
-        elapsedTimeLabel.text = hours+" and "+minutes
-
+        //get the hours
+        let hours = floor(computeElapsedTime()/3600)
+        //get the total minutes
+        let totalminutes = floor(computeElapsedTime()/60)
+        //make an hour string
+        let hourString = "\(hours) hours."
+        //get minutes in our hours counted
+        let hourMinutes = hours*60
+        // get the differnce between all the minutes and the ones in the hours
+        let excessMinutes = totalminutes - hourMinutes
+        //make a minutes string of the excess minutes
+        let minuteString = "\(excessMinutes) minutes."
+        elapsedTimeLabel.text = hourString+" and "+minuteString
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  //      dateLabel.text = formatDate()
-  //      endTimeDateLabel.text = formatDate()
-        //elapsedTimeLabel.text = "elapsed time"
     }
     
     func formatDate() ->String {
@@ -55,7 +74,7 @@ class CalendarViewController: UIViewController {
     
     func computeElapsedTime()->TimeInterval{
         let Time1 = datePicker.date
-        let Time2 = endTimeDatePicker.date.timeIntervalSince(Time1)
+        let Time2 = round(endTimeDatePicker.date.timeIntervalSince(Time1))
         
         return Time2
         
