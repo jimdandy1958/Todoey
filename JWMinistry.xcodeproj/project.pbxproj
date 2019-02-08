@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		04BF6A5A21FCCCB200485A3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A5921FCCCB200485A3B /* AppDelegate.swift */; };
-		04BF6A5C21FCCCB200485A3B /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A5B21FCCCB200485A3B /* TodoListViewController.swift */; };
+		04BF6A5C21FCCCB200485A3B /* StudentProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6A5B21FCCCB200485A3B /* StudentProgressViewController.swift */; };
 		04BF6A5F21FCCCB200485A3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BF6A5D21FCCCB200485A3B /* Main.storyboard */; };
 		04BF6A6121FCCCB300485A3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04BF6A6021FCCCB300485A3B /* Assets.xcassets */; };
 		04BF6A6421FCCCB300485A3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BF6A6221FCCCB300485A3B /* LaunchScreen.storyboard */; };
-		04E8FF0621FFCD5200EFE099 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0521FFCD5200EFE099 /* CategoryViewController.swift */; };
+		04DA88C6220CD33A00490AF4 /* StudentNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA88C5220CD33A00490AF4 /* StudentNoteViewController.swift */; };
+		04E8FF0621FFCD5200EFE099 /* BibleStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0521FFCD5200EFE099 /* BibleStudentViewController.swift */; };
 		04E8FF0A2200DF7D00EFE099 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF092200DF7D00EFE099 /* Item.swift */; };
-		04E8FF0C2200DF8700EFE099 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0B2200DF8700EFE099 /* Category.swift */; };
+		04E8FF0C2200DF8700EFE099 /* PublisherName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0B2200DF8700EFE099 /* PublisherName.swift */; };
 		04E8FF0E220222E600EFE099 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FF0D220222E600EFE099 /* SwipeTableViewController.swift */; };
 		04FD24BC2204169A00225505 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04FD24BB2204169A00225505 /* Default-568h@2x.png */; };
 		04FD24BE22042AA100225505 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD24BD22042AA100225505 /* CalendarViewController.swift */; };
@@ -22,20 +23,23 @@
 		04FD24C422052FD000225505 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD24C322052FD000225505 /* Month.swift */; };
 		04FD24C622053B0300225505 /* HourTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD24C522053B0300225505 /* HourTableViewController.swift */; };
 		04FD24C822053C6100225505 /* Hour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD24C722053C6100225505 /* Hour.swift */; };
-		C697785C29EB0A9D9452FEC4 /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C52E9D6D1BDB4AF4A7CC008 /* Pods_Todoey.framework */; };
+		04FD24CA22078BB900225505 /* ServiceReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD24C922078BB900225505 /* ServiceReportViewController.swift */; };
+		04FD24CC2207BDF600225505 /* ServiceReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FD24CB2207BDF600225505 /* ServiceReport.swift */; };
+		DEC70D3EF44469CEA797593C /* Pods_JWMinistry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED6122C4DED9A6D1E57DC90 /* Pods_JWMinistry.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		04BF6A5621FCCCB200485A3B /* JWMinistry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JWMinistry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BF6A5921FCCCB200485A3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04BF6A5B21FCCCB200485A3B /* TodoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewController.swift; sourceTree = "<group>"; };
+		04BF6A5B21FCCCB200485A3B /* StudentProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProgressViewController.swift; sourceTree = "<group>"; };
 		04BF6A5E21FCCCB200485A3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04BF6A6021FCCCB300485A3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04BF6A6321FCCCB300485A3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04BF6A6521FCCCB300485A3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		04E8FF0521FFCD5200EFE099 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		04DA88C5220CD33A00490AF4 /* StudentNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentNoteViewController.swift; sourceTree = "<group>"; };
+		04E8FF0521FFCD5200EFE099 /* BibleStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleStudentViewController.swift; sourceTree = "<group>"; };
 		04E8FF092200DF7D00EFE099 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		04E8FF0B2200DF8700EFE099 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		04E8FF0B2200DF8700EFE099 /* PublisherName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherName.swift; sourceTree = "<group>"; };
 		04E8FF0D220222E600EFE099 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		04FD24BB2204169A00225505 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		04FD24BD22042AA100225505 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -43,9 +47,13 @@
 		04FD24C322052FD000225505 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		04FD24C522053B0300225505 /* HourTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourTableViewController.swift; sourceTree = "<group>"; };
 		04FD24C722053C6100225505 /* Hour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hour.swift; sourceTree = "<group>"; };
+		04FD24C922078BB900225505 /* ServiceReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceReportViewController.swift; sourceTree = "<group>"; };
+		04FD24CB2207BDF600225505 /* ServiceReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceReport.swift; sourceTree = "<group>"; };
+		0EED025D5839929BC55CFFE4 /* Pods-JWMinistry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JWMinistry.release.xcconfig"; path = "Pods/Target Support Files/Pods-JWMinistry/Pods-JWMinistry.release.xcconfig"; sourceTree = "<group>"; };
 		41CCA15094F2D4367003C1C0 /* Pods-Todoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.release.xcconfig"; sourceTree = "<group>"; };
-		5C52E9D6D1BDB4AF4A7CC008 /* Pods_Todoey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B3CD4D8B78C5FCDF9592EFA /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
+		BED6122C4DED9A6D1E57DC90 /* Pods_JWMinistry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JWMinistry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C73C675836D15EA4D0D591F2 /* Pods-JWMinistry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JWMinistry.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JWMinistry/Pods-JWMinistry.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C697785C29EB0A9D9452FEC4 /* Pods_Todoey.framework in Frameworks */,
+				DEC70D3EF44469CEA797593C /* Pods_JWMinistry.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,10 +103,11 @@
 		04BF6A6D21FD442A00485A3B /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				04E8FF0B2200DF8700EFE099 /* Category.swift */,
+				04E8FF0B2200DF8700EFE099 /* PublisherName.swift */,
 				04E8FF092200DF7D00EFE099 /* Item.swift */,
 				04FD24C322052FD000225505 /* Month.swift */,
 				04FD24C722053C6100225505 /* Hour.swift */,
+				04FD24CB2207BDF600225505 /* ServiceReport.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -110,8 +119,10 @@
 				04FD24BD22042AA100225505 /* CalendarViewController.swift */,
 				04FD24C122052C5100225505 /* MonthTableTableViewController.swift */,
 				04FD24C522053B0300225505 /* HourTableViewController.swift */,
-				04E8FF0521FFCD5200EFE099 /* CategoryViewController.swift */,
-				04BF6A5B21FCCCB200485A3B /* TodoListViewController.swift */,
+				04FD24C922078BB900225505 /* ServiceReportViewController.swift */,
+				04E8FF0521FFCD5200EFE099 /* BibleStudentViewController.swift */,
+				04BF6A5B21FCCCB200485A3B /* StudentProgressViewController.swift */,
+				04DA88C5220CD33A00490AF4 /* StudentNoteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -136,7 +147,7 @@
 		14967675D8AE669AE3C3A348 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5C52E9D6D1BDB4AF4A7CC008 /* Pods_Todoey.framework */,
+				BED6122C4DED9A6D1E57DC90 /* Pods_JWMinistry.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -146,6 +157,8 @@
 			children = (
 				9B3CD4D8B78C5FCDF9592EFA /* Pods-Todoey.debug.xcconfig */,
 				41CCA15094F2D4367003C1C0 /* Pods-Todoey.release.xcconfig */,
+				C73C675836D15EA4D0D591F2 /* Pods-JWMinistry.debug.xcconfig */,
+				0EED025D5839929BC55CFFE4 /* Pods-JWMinistry.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -228,8 +241,10 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-JWMinistry/Pods-JWMinistry-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
@@ -239,13 +254,15 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Todoey/Pods-Todoey-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JWMinistry/Pods-JWMinistry-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0790E6BECF820CDD049E54D /* [CP] Check Pods Manifest.lock */ = {
@@ -263,7 +280,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Todoey-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-JWMinistry-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -278,15 +295,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E8FF0A2200DF7D00EFE099 /* Item.swift in Sources */,
-				04E8FF0621FFCD5200EFE099 /* CategoryViewController.swift in Sources */,
+				04E8FF0621FFCD5200EFE099 /* BibleStudentViewController.swift in Sources */,
 				04FD24C422052FD000225505 /* Month.swift in Sources */,
-				04BF6A5C21FCCCB200485A3B /* TodoListViewController.swift in Sources */,
+				04BF6A5C21FCCCB200485A3B /* StudentProgressViewController.swift in Sources */,
+				04FD24CA22078BB900225505 /* ServiceReportViewController.swift in Sources */,
 				04FD24C222052C5100225505 /* MonthTableTableViewController.swift in Sources */,
 				04FD24C622053B0300225505 /* HourTableViewController.swift in Sources */,
 				04BF6A5A21FCCCB200485A3B /* AppDelegate.swift in Sources */,
+				04DA88C6220CD33A00490AF4 /* StudentNoteViewController.swift in Sources */,
 				04E8FF0E220222E600EFE099 /* SwipeTableViewController.swift in Sources */,
 				04FD24BE22042AA100225505 /* CalendarViewController.swift in Sources */,
-				04E8FF0C2200DF8700EFE099 /* Category.swift in Sources */,
+				04FD24CC2207BDF600225505 /* ServiceReport.swift in Sources */,
+				04E8FF0C2200DF8700EFE099 /* PublisherName.swift in Sources */,
 				04FD24C822053C6100225505 /* Hour.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,13 +451,13 @@
 		};
 		04BF6A6921FCCCB300485A3B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9B3CD4D8B78C5FCDF9592EFA /* Pods-Todoey.debug.xcconfig */;
+			baseConfigurationReference = C73C675836D15EA4D0D591F2 /* Pods-JWMinistry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VFZ8Q38JCU;
 				INFOPLIST_FILE = Todoey/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,13 +471,13 @@
 		};
 		04BF6A6A21FCCCB300485A3B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41CCA15094F2D4367003C1C0 /* Pods-Todoey.release.xcconfig */;
+			baseConfigurationReference = 0EED025D5839929BC55CFFE4 /* Pods-JWMinistry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VFZ8Q38JCU;
 				INFOPLIST_FILE = Todoey/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

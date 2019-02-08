@@ -5,26 +5,46 @@
 //  Created by Mac on 1/26/19.
 //  Copyright © 2019 JimdandyForex. All rights reserved.
 //
-
-//import CoreData
 import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class TodoListViewController: SwipeTableViewController {
+class StudentProgressViewController: SwipeTableViewController {
     
     //make an array of objects
-    var todoItems: Results<Item>?
     let realm = try! Realm()
     
-    //MADE A LINK SO THAT WE CAN CHANGE SEARCH BAR BACKGROUND COLOR
-    @IBOutlet weak var searchBar: UISearchBar!
+    // this declares a variable called of the results type
+    //but does not populate it. that happens in loaditems
+    //called when the selected student is sent from vc during segue
+    var studentNotes: Results<Item>?
+    var TotalItems:   Results<Item>?
+//
+    var selectedRow = 73
+    var row: Int?{
+        didSet{
+            selectedRow = row!
+            print("row selected sent to progress is \(row!)")
+        }
+    }
+//
+    var selectedStudent : PublisherName? {
+        didSet{
+            loadItems()
+        }
+    }
+    //MARK - Tableview Datasource Methods
     
-    
-    var selectedCategory : Category? {
-        didSet{loadItems()}
+
+    func loadItems() {
+        studentNotes = realm.objects(Item.self).filter("name CONTAINS[cd] %@",selectedStudent?.name)
+        tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (studentNotes?.count)!
+    }
+
     //     VIEW DID LOAD      //
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +53,10 @@ class TodoListViewController: SwipeTableViewController {
     //   VIEW WILL APPEAR     //
     override func viewWillAppear(_ animated: Bool) {
         //MAKE THE TITLE OF THE TODO LIST THE SAME AS THE CATEGORY NAME
-        title = selectedCategory?.name
+        title = (selectedStudent?.name)! + " Notes"
         
         //MAKE SURE A CATEGORY IS SELECTED OR CRASH
-        guard let colourHex = selectedCategory?.colour else {fatalError()}
+        guard let colourHex = selectedStudent?.colour else {fatalError()}
     
         updateNavBar(withHexCode: colourHex)
     }
@@ -63,30 +83,23 @@ class TodoListViewController: SwipeTableViewController {
         navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
         
         //SET THE TITLE FONT COLOR TO CONTRAST THE BACKGROUND
-        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
         
-        //SET THE BACKGROUND OF THE SEARCH BAR TO THE SAME COLOR
-        searchBar.barTintColor = navBarColour
     }
     
-    //MARK - Tableview Datasource Methods
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoItems?.count ?? 1
-    }
 
     //CELL FOR ROW AT INDEX fills in the text of the cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
 
-        if let item = todoItems?[indexPath.row] {
+        if let item = studentNotes?[indexPath.row] {
  
-            cell.textLabel!.text = "\(indexPath.row+1). " + item.title
+            cell.textLabel!.text = item.title
 
-            cell.accessoryType = item.done ? .checkmark : .none
+         //   cell.accessoryType = item.done ? .checkmark : .none
  
-            if let colour = UIColor(hexString: selectedCategory!.colour)?.darken(byPercentage:CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+            if let colour = UIColor(hexString: selectedStudent!.colour)?.darken(byPercentage:CGFloat(indexPath.row) / CGFloat(studentNotes!.count)) {
                 cell .backgroundColor = colour
                 cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
             }
@@ -96,38 +109,45 @@ class TodoListViewController: SwipeTableViewController {
         return cell
     }
     
+    
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
+    //////////////////////////////////////////////////
     //DID SELECT A ROW Happens when you click on a row.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let item = todoItems?[indexPath.row] {
-            do{
-                try realm.write{
-                    //realm.delete(item)
-                    item.done = !item.done
-                }
-            }catch{
-                print("Error saving done status, \(error)")
-            }
+        performSegue(withIdentifier: "gotoStudentNote", sender: self)
         }
-        tableView.reloadData()
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! StudentNoteViewController
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedStudentNote = studentNotes?[indexPath.row]
+          //studentNotes?.name[indexPath.row]  destinationVC.row = self.selectedStudent?.items.row//Item.row
+          //  print("sending the name of ", studentNotes?.name[indexPath.row])
+        }/////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+
     }
-        
+    
     //ADD BUTTON PRESSED
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add New Todoey Item", message: " ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Student Note", message: " ", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add Date", style: .default) { (action) in
             if textField.text != ""{
-                if let currentCategory = self.selectedCategory {
+                if let currentStudent = self.selectedStudent {
                     do{
                         try self.realm.write {
                             let newItem = Item()
                             newItem.title = textField.text!
                             newItem.dateCreated = Date()
-                            currentCategory.items.append(newItem)
+                            newItem.studentNote = "\(currentStudent.name) note"
+                            newItem.name = "\(currentStudent.name)"
+                            currentStudent.items.append(newItem)
                         }
                     } catch {
                         print("Error saving new item, \(error)")
@@ -147,13 +167,8 @@ class TodoListViewController: SwipeTableViewController {
         tableView.reloadData()
     }
     
-    func loadItems() {
-        todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
-        tableView.reloadData()
-    }
-    
     override func updateModel(at indexPath: IndexPath) {
-        if let item = todoItems?[indexPath.row] {
+        if let item = studentNotes?[indexPath.row] {
             do  {
                 try realm.write{
                     realm.delete(item)
@@ -167,7 +182,7 @@ class TodoListViewController: SwipeTableViewController {
     //SROLL TO THE BOTTOM
     func scrollToBottom () {
         //this is nil coalescing operator
-        let itemcount = todoItems?.count ?? 1
+        let itemcount = studentNotes?.count ?? 1
         if itemcount - 1 > 0 {
             tableView.scrollToRow(at: IndexPath(row: itemcount - 1, section: 0), at: .bottom, animated: false)
         }
@@ -175,22 +190,29 @@ class TodoListViewController: SwipeTableViewController {
 
 }
 
-extension TodoListViewController: UISearchBarDelegate {
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title",ascending: true)
-        tableView.reloadData()
-    }
+//SET THE BACKGROUND OF THE SEARCH BAR TO THE SAME COLOR
+//searchBar.barTintColor = navBarColour
 
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            loadItems()
-            tableView.reloadData()
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-        }
-    }
+//    //MADE A LINK SO THAT WE CAN CHANGE SEARCH BAR BACKGROUND COLOR
+//    @IBOutlet weak var searchBar: UISearchBar!
 
-}
+
+//extension StudentProgressViewController: UISearchBarDelegate {
+//
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        studentNotes = studentNotes?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "title",ascending: true)
+//        tableView.reloadData()
+//    }
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0 {
+//            loadItems()
+//            tableView.reloadData()
+//            DispatchQueue.main.async {
+//                searchBar.resignFirstResponder()
+//            }
+//        }
+//    }
+//
+//}
 

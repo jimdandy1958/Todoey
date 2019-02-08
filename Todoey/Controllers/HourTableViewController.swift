@@ -61,7 +61,7 @@ class HourTableViewController: SwipeTableViewController {
         navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
         
         //SET THE TITLE FONT COLOR TO CONTRAST THE BACKGROUND
-        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
         }
     
     //MARK - Tableview Datasource Methods
@@ -93,25 +93,20 @@ class HourTableViewController: SwipeTableViewController {
     
     //DID SELECT A ROW Happens when you click on a row.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //change to done to insert checkmark
         if let item = hourlist?[indexPath.row] {
-            do{
-                try realm.write{
-                    //realm.delete(item)
-                    item.done = !item.done
-                }
-            }catch{
-                print("Error saving done status, \(error)")
-            }
+            do{ try realm.write{ item.done = !item.done }
+            }catch{ print("Error saving done status, \(error)")}
         }
+        //reload the view to show the check mark change
         tableView.reloadData()
+        //deselect row
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     //ADD BUTTON PRESSED
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        
         var textField = UITextField()
-        
         let alert = UIAlertController(title: "Add Number of Hours", message: " ", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Enter Even Number Of Hours", style: .default) { (action) in

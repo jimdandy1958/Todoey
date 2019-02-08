@@ -13,35 +13,33 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.separatorStyle = .none
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .singleLine
     }
     
-/////////////////////////////////////////////////////////////////////////////
-       //                TableView Datasource Methods
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    /////////////////////////////////////////////////////////////////////////////
+    //                TableView Datasource Methods
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SwipeTableViewCell
-        
-        cell.delegate = self
+            cell.delegate = self
         
         return cell
-
+        
     }
     
-///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
     //                             SWIPING DELETING
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-
         guard orientation == .right else { return nil}
-    
+        
         let deleteAction = SwipeAction(style: .destructive, title: "Delete") {
             action, indexPath in
-                self.updateModel(at: indexPath)
+            self.updateModel(at: indexPath)
         }
-            // customize the action appearance
-            deleteAction.image = UIImage(named: "delete-icon")
-            return [deleteAction]
-        }
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-icon")
+        return [deleteAction]
+    }
     
     //                      TABLEVIEW EDIT ACTIONS OPTIONS FOR ROW AT
     //////////////////////////////////////////////////////////////////////
@@ -60,4 +58,3 @@ class SwipeTableViewController: UITableViewController, SwipeTableViewCellDelegat
         //Update our data model.
     }
 }
-//                SWIPE TABLE VIEW CONTROLLER CLASS ENDING

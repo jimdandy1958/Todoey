@@ -13,14 +13,11 @@ import ChameleonFramework
 class MonthTableTableViewController: SwipeTableViewController {
     
     let realm = try! Realm()
-    
     var months: Results<Month>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMonths()
-        
-        
     }
 
     // MARK: - Table view data source
@@ -29,18 +26,13 @@ class MonthTableTableViewController: SwipeTableViewController {
         return months?.count ?? 1
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView,cellForRowAt: indexPath)
         //code not in super class.
         if let month = months?[indexPath.row]{
-            
             cell.textLabel?.text = month.monthName
-            
             guard let monthColour = UIColor(hexString: month.colour )else {fatalError()}
-            
             cell.backgroundColor = monthColour
-            
             cell.textLabel?.textColor = ContrastColorOf(monthColour, returnFlat: true)
         }
         return cell

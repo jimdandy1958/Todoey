@@ -1,5 +1,5 @@
 //
-//  CategoryViewController.swift
+//  MonthViewController.swift
 //  Todoey
 //
 //  Created by Mac on 1/28/19.
@@ -10,61 +10,60 @@ import UIKit
 import RealmSwift
 import ChameleonFramework
 
-class CategoryViewController: SwipeTableViewController {
+class BibleStudentViewController: SwipeTableViewController {
     
     let realm = try! Realm()
 
-    var categories: Results<Category>?
+    var students: Results<PublisherName>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadCategories()
-       
-       
+        loadStudents()
     }
     
     //MARK: - TableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories?.count ?? 1
+        return students?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         //addition code not in the super class
-        if let category = categories?[indexPath.row]{
+        if let pub = students?[indexPath.row]{
             
-            cell.textLabel?.text = category.name
+            cell.textLabel?.text = pub.name
             
-            guard let categoryColour = UIColor(hexString: category.colour )else {fatalError()}
+            guard let pubColour = UIColor(hexString: pub.colour )else {fatalError()}
             
-            cell.backgroundColor = categoryColour
+            cell.backgroundColor = pubColour
             
-            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+            cell.textLabel?.textColor = ContrastColorOf(pubColour, returnFlat: true)
         }
         return cell
     }
     
     //MARK: - Tableview Delegate Methods
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToItems", sender: self)
         }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! TodoListViewController
+        let destinationVC = segue.destination as! StudentProgressViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedCategory = categories?[indexPath.row]
+            destinationVC.selectedStudent = students?[indexPath.row]
+            destinationVC.row = indexPath.row
         }
     }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //MARK: - Data Manipulation Methods
     
-    func save(category: Category) {
+    func save(student: PublisherName) {
             do {
                 try realm.write {
-                    realm.add(category)
+                    realm.add(student)
                 }
             } catch {
                 print("error saving category \(error)")
@@ -74,21 +73,21 @@ class CategoryViewController: SwipeTableViewController {
     
     
     //MARK: - LOAD CATEGORIES
-    func loadCategories() {
-        categories = realm.objects(Category.self)
+    func loadStudents() {
+        students = realm.objects(PublisherName.self)
         tableView.reloadData()
     }
     
     
     //MARK: = DELETE DATA FROM SWIPE
     override func updateModel(at indexPath: IndexPath) {
-        if let categoryForDeletion = self.categories?[indexPath.row] {
+        if let categoryForDeletion = self.students?[indexPath.row] {
             do{
                 try self.realm.write{
                     self.realm.delete(categoryForDeletion)
                 }
             }catch{
-                print("Error deleting category, \(error)")
+                print("Error deleting student, \(error)")
             }
         }
     }
@@ -97,23 +96,23 @@ class CategoryViewController: SwipeTableViewController {
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         //create an alert controller
-        let alert = UIAlertController(title: "Add New Category", message: " ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Student", message: " ", preferredStyle: .alert)
 
         var textField = UITextField()
         
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Add a new category"
+            alertTextField.placeholder = "Add a new student"
             //set up the global variable to copy what is going to be typed later.
             textField=alertTextField
         }
         
-        let action = UIAlertAction(title: "Add Category", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add Student", style: .default) { (action) in
             
-            let newCategory = Category()
-            newCategory.name = textField.text!
-            newCategory.colour = UIColor.randomFlat.hexValue()
-            if newCategory.name != ""{
-            self.save(category: newCategory)
+            let newStudent = PublisherName()
+            newStudent.name = textField.text!
+            newStudent.colour = UIColor.randomFlat.hexValue()
+            if newStudent.name != ""{
+            self.save(student: newStudent)
             }
             self.scrollToBottom()
         }
@@ -123,9 +122,11 @@ class CategoryViewController: SwipeTableViewController {
     //scrolls to last item in list
     func scrollToBottom () {
         //this is nil coalescing operator
-        let catcount = categories?.count ?? 1
-        if catcount - 1 > 0 {
-            tableView.scrollToRow(at: IndexPath(row: catcount - 1, section: 0), at: .bottom, animated: false)
+        let pubcount = students?.count ?? 1
+        if pubcount - 1 > 0 {
+            tableView.scrollToRow(at: IndexPath(row: pubcount - 1, section: 0), at: .bottom, animated: false)
         }
     }
+
+
 }

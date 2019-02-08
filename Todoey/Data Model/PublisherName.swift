@@ -9,9 +9,10 @@
 import Foundation
 import RealmSwift
 
-class Category: Object {
+class PublisherName: Object {
     @objc dynamic var name: String =  ""
     @objc dynamic var colour: String = ""
-    //This is the forward relationship from category to items    
+    @objc dynamic var note: String = ""
+    //This is the forward relationship from category to items
     let items = List<Item>()
 }
