@@ -63,7 +63,7 @@ class StudentProgressViewController: SwipeTableViewController {
     
     //CHANGE THE NAVBAR OF THE CATEGORY BACK TO IT'S ORIGINAL WHEN MAKING TODO LIST DISAPPEAR
     override func viewWillDisappear(_ animated: Bool) {
-        updateNavBar(withHexCode: "942192")
+        updateNavBar(withHexCode: "7B34A2")
     }
     
     //MARK: - Nav Bar Setup Methods
@@ -134,11 +134,16 @@ class StudentProgressViewController: SwipeTableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
         var textField = UITextField()
+        let date = Date()
+        let calendar = Calendar.current
+        let month = calendar.component( .month, from: date)
+        let day   = calendar.component( .day,   from: date)
+        let year  = calendar.component( .year,  from: date)
         
-        let alert = UIAlertController(title: "Add New Student Note", message: " ", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add new note for \(self.selectedStudent!.name)", message: " ", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Date", style: .default) { (action) in
-            if textField.text != ""{
+            if textField.text == ""{ textField.text = "\(month) / \(day) / \(year)"}
                 if let currentStudent = self.selectedStudent {
                     do{
                         try self.realm.write {
@@ -155,7 +160,6 @@ class StudentProgressViewController: SwipeTableViewController {
                 }
                 self.tableView.reloadData()
                 self.scrollToBottom()
-            }
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "create new item"

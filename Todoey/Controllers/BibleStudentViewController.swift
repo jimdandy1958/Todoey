@@ -72,7 +72,7 @@ class BibleStudentViewController: SwipeTableViewController {
         }
     
     
-    //MARK: - LOAD CATEGORIES
+    //MARK: - LOAD Student List
     func loadStudents() {
         students = realm.objects(PublisherName.self)
         tableView.reloadData()
@@ -81,10 +81,10 @@ class BibleStudentViewController: SwipeTableViewController {
     
     //MARK: = DELETE DATA FROM SWIPE
     override func updateModel(at indexPath: IndexPath) {
-        if let categoryForDeletion = self.students?[indexPath.row] {
+        if let studentForDeletion = self.students?[indexPath.row] {
             do{
                 try self.realm.write{
-                    self.realm.delete(categoryForDeletion)
+                    self.realm.delete(studentForDeletion)
                 }
             }catch{
                 print("Error deleting student, \(error)")
